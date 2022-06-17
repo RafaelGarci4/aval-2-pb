@@ -1,4 +1,4 @@
-package br.com.rafael.q09;
+package br.com.rafael.q10;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -12,7 +12,7 @@ public class ConnectionFactory {
 
     public ConnectionFactory(){
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/loja_aval2?useTimezone=true&serverTimezone=UTC");
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/funcionario?useTimezone=true&serverTimezone=UTC");
         comboPooledDataSource.setUser("root");
         comboPooledDataSource.setPassword("Euprefirodota2");
         this.dataSource = comboPooledDataSource;

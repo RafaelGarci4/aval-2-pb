@@ -1,14 +1,19 @@
 package br.com.rafael.q09;
 
 import java.util.Date;
+import java.util.Calendar;
+
 
 public class Produto {
     private int id;
     private String nome;
     private String descricao;
-    private float desconto;
-    private float preco;
+    private double desconto;
+    private double preco;
     private Date data;
+
+
+
 
     public Produto(int id, String nome, String descricao, float desconto, float preco, Date data) {
         this.id = id;
@@ -46,19 +51,19 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public float getDesconto() {
+    public double getDesconto() {
         return desconto;
     }
 
-    public void setDesconto(float desconto) {
+    public void setDesconto(double desconto) {
         this.desconto = desconto;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
@@ -67,6 +72,7 @@ public class Produto {
     }
 
     public void setData(Date data) {
-        this.data = data;
+        Date data2 = new Date();
+        this.data = data2;
     }
 }
