@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -16,9 +17,60 @@ public class ProdutoDAO {
         this.connection = connection;
     }
 
+    public boolean testeEmpty()throws SQLException {
+        String sql = "SELECT * FROM produto_aval2";
+        int count = 0;
+        boolean resp = false;
+        try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
+            pstm.execute();
+
+            ResultSet rst = pstm.getResultSet();
+
+            while (rst.next()) {
+
+                count = count + 1;
+            }
+
+            //System.out.println(count);
+        }
+            if (count > 0){
+                resp = true;
+            }
+
+            return resp;
+    }
+    public boolean checkByID(int id) throws SQLException{
+        boolean flag = true;
+        String sql = "SELECT * FROM  produto_aval2 WHERE ID = ?";
+
+        try(PreparedStatement pstm = connection.prepareStatement(sql)) {
+
+            pstm.setInt(1, id);
+
+            pstm.execute();
+
+            ResultSet rst = pstm.getResultSet();
+
+            String contagem = null;
+            while (rst.next()) {
+                contagem = rst.getString(1);
+
+
+            }
+
+            if (contagem == null) {
+                flag = false;
+            }
+
+           return flag;
+
+        }
+
+    }
 
     public void insert(Produto produto) throws SQLException{
+
         String sql = "INSERT INTO produto_aval2 (NOME, DESCRICAO, DESCONTO, PRECO, DATA_INICIO) VALUES (?, ?, ?, ?, ?)";
 
         LocalDateTime data = LocalDateTime.now();
@@ -37,10 +89,10 @@ public class ProdutoDAO {
 
 
     public void selectFromID(int id) throws SQLException{
+        boolean flag;
+       // checkByID(id);
         String sql = "SELECT * FROM produto_aval2 WHERE ID = ?";
 
-        //LocalDateTime data = LocalDateTime.now();
-        // DateTimeFormatter  robson = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             pstm.setInt(1,id);
@@ -73,19 +125,31 @@ public class ProdutoDAO {
 
         }
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Novo valor do desconto: ");
-        double newDesconto = scanner.nextDouble();
+       do {
 
-        System.out.print("Novo valor do preco");
-        double newPreco = scanner.nextDouble();
+           try {
 
-        sql = "UPDATE produto_aval2 SET DESCONTO = ?, PRECO = ? WHERE ID = ?  ";
-        PreparedStatement pstm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-        pstm.setDouble(1,newDesconto);
-        pstm.setDouble(2,newPreco);
-        pstm.setInt(3,id);
+               System.out.print("Novo valor do desconto: ");
+               double newDesconto = scanner.nextDouble();
 
-        pstm.execute();
+               System.out.print("Novo valor do preco");
+               double newPreco = scanner.nextDouble();
+
+               sql = "UPDATE produto_aval2 SET DESCONTO = ?, PRECO = ? WHERE ID = ?  ";
+               PreparedStatement pstm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+               pstm.setDouble(1,newDesconto);
+               pstm.setDouble(2,newPreco);
+               pstm.setInt(3,id);
+               flag = true;
+               pstm.execute();
+           }catch (InputMismatchException e){
+               System.out.println("Insira um valor valido");
+               flag = false;
+               scanner.nextLine();
+           }
+       }while (!flag);
+
+
     }
 
 
@@ -112,7 +176,7 @@ public class ProdutoDAO {
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-           pstm.setString(1,chave);
+           pstm.setString(1,"%"+chave+"%");
             pstm.execute();
 
             ResultSet rst = pstm.getResultSet();

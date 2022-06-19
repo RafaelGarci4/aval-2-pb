@@ -16,12 +16,12 @@ public class FuncionarioDAO {
 
 
 
-    public void insert(String input,String emocao) throws SQLException{
+    public void insert(String nomeFuncionario,String input,String emocao) throws SQLException{
         String sql = "INSERT INTO emocao (NOME, MENSAGEM, SENTIMENTO) VALUES (?, ?, ?)";
 
         try(PreparedStatement pstm2 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-            pstm2.setString(1,"rafael");
+            pstm2.setString(1,nomeFuncionario);
             pstm2.setString(2,input);
             pstm2.setString(3,emocao);
 

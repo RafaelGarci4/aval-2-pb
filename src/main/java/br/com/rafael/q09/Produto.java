@@ -5,35 +5,26 @@ import java.util.Calendar;
 
 
 public class Produto {
-    private int id;
+    //private int id;
     private String nome;
     private String descricao;
     private double desconto;
     private double preco;
-    private Date data;
+   // private Date data;
 
 
-
-
-    public Produto(int id, String nome, String descricao, float desconto, float preco, Date data) {
-        this.id = id;
+    public Produto( String nome, String descricao, float desconto, float preco) {
+       // this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.desconto = desconto;
         this.preco = preco;
-        this.data = data;
+       // this.data = data;
     }
 
     public Produto() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -67,12 +58,4 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        Date data2 = new Date();
-        this.data = data2;
-    }
 }
