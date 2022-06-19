@@ -49,6 +49,7 @@ public class principal {
     }
 
     public static void main(String[] args) throws SQLException {
+
         //Estabelece a con com o BD
         Connection connection = new ConnectionFactory().recuperarConexao();
         boolean flag;
