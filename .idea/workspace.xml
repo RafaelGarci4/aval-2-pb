@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dfcb95e4-acf7-4f46-b695-4f9f4d7ea19e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rafael/q09/principal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rafael/q10/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rafael/q10/FuncionarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rafael/q10/principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rafael/q10/principal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

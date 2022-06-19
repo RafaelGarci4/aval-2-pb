@@ -51,14 +51,14 @@ public class principal {
     public static void main(String[] args) throws SQLException {
         //Estabelece a con com o BD
         Connection connection = new ConnectionFactory().recuperarConexao();
-
+        boolean flag;
         //instancia a DAO para podermos chamar seus metodos
         dao = new FuncionarioDAO(connection);
 
         //Frase a ser lida
         String input = " ";
         //Nome do funcionario
-        String nomeFuncionario;
+        String nomeFuncionario = " ";
         //Contagem de sequencias :-)
         int contagemH = 0;
         //contagem de sequencias :-(
@@ -66,11 +66,25 @@ public class principal {
 
         //Scanner instanciado e input lido do terminal
         Scanner scanner = new Scanner(System.in);
+       do {
+           try{
+               System.out.println("Entre com seu nome: ");
+               nomeFuncionario = scanner.nextLine();
+               System.out.println("Entre com sua frase");
+               input = scanner.nextLine();
 
-        System.out.println("Entre com seu nome: ");
-        nomeFuncionario = scanner.nextLine();
-        System.out.println("Entre com sua frase");
-        input = scanner.nextLine();
+               if (nomeFuncionario.isEmpty() ||input.isEmpty() ){
+                   throw new IllegalArgumentException();
+               }
+               flag = true;
+
+           }catch (IllegalArgumentException e){
+               flag = false;
+               System.out.println("Nao aceitamos campos vazios");
+
+           }
+       }while (!flag);
+
 
 
         String resp;
